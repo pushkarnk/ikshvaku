@@ -1,0 +1,7 @@
+apiVersion: cache.example.com/v1alpha1
+kind: Ikshvaku
+metadata:
+  name: example-ikshvaku
+spec:
+  # Add fields here
+  clusterSize: 4 

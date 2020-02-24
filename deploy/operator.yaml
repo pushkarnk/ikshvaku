@@ -1,0 +1,33 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ikshvaku
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      name: ikshvaku
+  template:
+    metadata:
+      labels:
+        name: ikshvaku
+    spec:
+      serviceAccountName: ikshvaku
+      containers:
+        - name: ikshvaku
+          # Replace this with the built image name
+          image: quay.io/pushkarnk/ikshvaku:v0.0.2
+          command:
+          - ikshvaku
+          imagePullPolicy: Always
+          env:
+            - name: WATCH_NAMESPACE
+              valueFrom:
+                fieldRef:
+                  fieldPath: metadata.namespace
+            - name: POD_NAME
+              valueFrom:
+                fieldRef:
+                  fieldPath: metadata.name
+            - name: OPERATOR_NAME
+              value: "ikshvaku"
